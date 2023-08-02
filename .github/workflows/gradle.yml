@@ -67,6 +67,7 @@ jobs:
           # aws_session_token: ${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
           application_name: spring-test
           environment_name: Spring-test-env
+          use_existing_version_if_available: true
           version_label: github-action-${{steps.current-time.outputs.formattedTime}}
           region: ap-northeast-2
           deployment_package: deploy/deploy.zip
