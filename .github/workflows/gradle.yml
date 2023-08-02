@@ -36,7 +36,7 @@ jobs:
         shell: bash
 
       - name: Build with Gradle
-        run: ./gradlew clean build # (7)
+        run: profile=local & ./gradlew clean build # (7)
         shell: bash
         
       - name: Show Current Time
