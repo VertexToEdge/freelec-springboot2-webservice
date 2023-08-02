@@ -36,3 +36,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build # (7)
         shell: bash
+        
+      - name: Show Current Time
+        run: echo "CurrentTime=${{steps.current-time.outputs.formattedTime}}"
+        shell: bash
