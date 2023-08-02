@@ -52,7 +52,7 @@ jobs:
           cd deploy && zip -r deploy.zip .
           
       - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::406370011975:role/oidc-githubaction
           role-session-name: samplerolesession
