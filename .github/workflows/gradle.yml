@@ -62,9 +62,9 @@ jobs:
       - name: Deploy to EB # (2)
         uses: einaregilsson/beanstalk-deploy@v14
         with:
-          # aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          # aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_session_token: ${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
+          aws_access_key: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          # aws_session_token: ${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
           application_name: freelec-springboot2-webervice
           environment_name: freelec-springboot2-webervice
           version_label: github-action-${{steps.current-time.outputs.formattedTime}}
