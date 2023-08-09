@@ -39,13 +39,14 @@ jobs:
         run: profile=local & ./gradlew clean build # (7)
         shell: bash
 
-
-      - name: Show Current Time
+      - name: Get current time
+        uses: josStorer/get-current-time@v2
+        id: current-time
+        with:
+          format: YYYYMMDD-HH
+          
+      - name: Get Current Time
         uses: josStorer/get-current-time@v2.1.1
-        run: |
-          echo "CurrentTime=${{steps.current-time.outputs.formattedTime}}"
-          currentTime=${{steps.current-time.outputs.formattedTime}}
-        shell: bash
       
       - name: Generate deployment package # (1)
         run: |
@@ -72,6 +73,6 @@ jobs:
           application_name: spring-test
           environment_name: Spring-test-env
           use_existing_version_if_available: true
-          version_label: github-action-${{env.currentTime}}
+          version_label: github-action-${{steps.current-time.outputs.formattedTime}}
           region: ap-northeast-2
           deployment_package: deploy/deploy.zip
