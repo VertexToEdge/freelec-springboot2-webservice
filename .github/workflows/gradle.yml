@@ -30,9 +30,6 @@ jobs:
         uses: actions/setup-java@v1 # (5)
         with:
           java-version: 1.8
-          
-      - name: Get Current Time
-        uses: josStorer/get-current-time@v2.1.1
       
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew # (6)
@@ -41,9 +38,13 @@ jobs:
       - name: Build with Gradle
         run: profile=local & ./gradlew clean build # (7)
         shell: bash
-        
+
+
       - name: Show Current Time
-        run: echo "CurrentTime=${{steps.current-time.outputs.formattedTime}}"
+        uses: josStorer/get-current-time@v2.1.1
+        run: |
+          echo "CurrentTime=${{steps.current-time.outputs.formattedTime}}"
+          currentTime=${{steps.current-time.outputs.formattedTime}}
         shell: bash
       
       - name: Generate deployment package # (1)
@@ -71,6 +72,6 @@ jobs:
           application_name: spring-test
           environment_name: Spring-test-env
           use_existing_version_if_available: true
-          version_label: github-action-${{steps.current-time.outputs.formattedTime}}
+          version_label: github-action-${{env.currentTime}}
           region: ap-northeast-2
           deployment_package: deploy/deploy.zip
